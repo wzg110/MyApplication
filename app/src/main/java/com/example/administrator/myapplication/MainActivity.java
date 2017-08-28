@@ -9,8 +9,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +38,29 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
+        try{
+        TextView tb=new TextView(this);
+        List<String> list=new ArrayList<>();
+        list.add("aaaa");
+      for ( int i=0;i<4;i++){
+          tb.setText(list.get(i));
+
+      }}catch (Exception e){
+
+            StringBuffer sb = new StringBuffer();
+            StackTraceElement[] stackArray = e.getStackTrace();
+            for (int i = 0; i < stackArray.length; i++) {
+                StackTraceElement element = stackArray[i];
+                sb.append(element.toString() + "\n");
+            }
+            Log.e("错误",
+                   "getMessage-->"+e.getMessage()+"\n"
+            +"getStackTrace-->"+sb.toString()+"\n"
+                           +"getLocalizedMessage-->"+e.getLocalizedMessage()+"\n"
+                           +"getCause-->" +e.getCause()+"\n"
+                           +"getClass-->"+e.getClass()+"\n"
+                           +"getSuppressed-->" +e.getSuppressed()+"\n");
+        }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 //                BigDecimal b=new BigDecimal("6");
 //                System.out.println(b.subtract(a));
 //                btn.setText(b.subtract(a)+"");
+
+
+
                 btn.setText(new SimpleDateFormat("HH:mm:ss").format(TimeZone.getDefault().getOffset(5*60*1000)));
 
             }
